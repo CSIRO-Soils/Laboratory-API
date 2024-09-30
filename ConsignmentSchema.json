@@ -69,8 +69,12 @@
 									"description": "The type of method used to analyse the result (e.g. chemical, physical, spectra, procedure)",
 									"type": "string"
 								},
+								"procedureId": {
+									"description": "The unique CSIRO identifier for the requested procedure",
+									"type": "number"
+								},
 								"standardProcedureCode": {
-									"description": "The standard procedure code requested for the analysis",
+									"description": "The standard procedure code or name requested for the analysis",
 									"type": "string"
 								},
 								"requestedProcedureCode": {
@@ -96,7 +100,7 @@
 							}
 						},
 						"uniqueItems": true,
-						"required": [ "analysisType", "standardProcedureCode" ]
+						"required": [ "analysisType", "procedureId", "standardProcedureCode" ]
 					}
 				}
 			},
