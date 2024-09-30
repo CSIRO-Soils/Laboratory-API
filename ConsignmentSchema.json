@@ -1,0 +1,107 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://soils.csiro.au/labApi.schema.json",
+    "title": "CSIROSoilConsignment",
+	"description": "A set of soil lab results for samples collected for a project.  Data that can be changed through the POST are noted with -- POST at the end of the description.",
+	"type": "object",
+	"properties": {
+		"samples": {
+			"description": "The collection of samples provided in the consignment",
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"agencyId": {
+						"description": "The identifier of the organisation conducting the project (from the CSIRO system)",
+						"type": "string"
+					},
+					"projectId": {
+						"description": "The identifier of the project (from the CSIRO system)",
+						"type": "string"
+					},
+					"siteId": {
+						"description": "The identifier of the site (from the CSIRO system)",
+						"type": "string"
+					},
+					"observationId": {
+						"description": "The identifier of the observation (from the CSIRO system)",
+						"type": "string"
+					},
+					"horizonId": {
+						"description": "The identifier of the horizon/layer (from the CSIRO system)",
+						"type": "number"
+					},
+					"sampleId": {
+						"description": "The identifier of the sample (from the CSIRO system)",
+						"type": "number"
+					},
+					"barcode": {
+						"description": "The field barcode attached to the sample",
+						"type": [ "number", "string" ]
+					},
+					"depthUpper": {
+						"description": "The upper depth that the sample represents in metres from soil surface",
+						"type": "number"
+					},
+					"depthLower": {
+						"description": "The lower depth that the sample represents in metres from soil surface",
+						"type": "number"
+					},
+					"receivedDate": {
+						 "description": "The date when the lab received the samples for analysis -- POST",
+						 "type": [ "string", "null" ]
+					},
+					"viable": {
+						 "description": "A boolean indicating if a sample is fit for analysis -- POST",
+						 "type": [ "boolean", "null" ]
+					},
+					"viableComment": {
+						 "description": "If a sample is not viable (or present in the consignment), a description of why not viable -- POST",
+						 "type": [ "string", "null" ]
+					},
+					"results": {
+						"description": "The collection of soil lab requests / results for this sample",
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"analysisType": {
+									"description": "The type of method used to analyse the result (e.g. chemical, physical, spectra, procedure)",
+									"type": "string"
+								},
+								"standardProcedureCode": {
+									"description": "The standard procedure code requested for the analysis",
+									"type": "string"
+								},
+								"requestedProcedureCode": {
+									"description": "The requested procedure code from the laboratory list - if different. This procudere should provide a comparable result to the standard procedure.",
+									"type": "string"
+								},
+								"result": {
+									"description": "The result of the measurement, including if the result is negative. A prefix symbol defining where a result represents the limit to a procedure, such as less than (<) or greater than (>) or (t) for trace can be included with the result as string. Must be represented in the units of measure (uom) specified in the request. -- POST",
+									"type": [ "number", "string", "null" ]
+								},
+								"resultDate": {
+									"description": "The date when the lab performed the analysis Format: (YYYY-MM-DD) (local) -- POST",
+									"type": "string"
+								},
+								"uom": {
+									"description": "The units of measurement of the result property. Do not change this value from the one provided.",
+									"type": "string"
+								},
+								"notes": {
+									"description": "Descriptive conditional text to describe under what conditions (relative to other tests / qualities of the sample) the test should be performed.",
+									"type": "string"
+								}
+							}
+						},
+						"uniqueItems": true,
+						"required": [ "analysisType", "standardProcedureCode" ]
+					}
+				}
+			},
+			"uniqueItems": true,
+			"required": [ "barcode" ]
+		}
+    }
+}
