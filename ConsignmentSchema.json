@@ -100,7 +100,7 @@
 							}
 						},
 						"uniqueItems": true,
-						"required": [ "analysisType", "procedureId", "standardProcedureCode" ]
+						"required": [ "analysisType", "procedureId", "standardProcedureCode", "uom" ]
 					}
 				}
 			},
